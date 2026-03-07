@@ -21,7 +21,7 @@ func NewList[K comparable, V any]() *DoublyLinkedList[K, V]{
 	}
 }
 
-func (dll DoublyLinkedList[K, V]) addFirst(node *Node[K, V]) {
+func (dll *DoublyLinkedList[K, V]) addFirst(node *Node[K, V]) {
 	node.next = dll.head.next
 	node.prev = dll.head
 
@@ -29,17 +29,17 @@ func (dll DoublyLinkedList[K, V]) addFirst(node *Node[K, V]) {
 	dll.head.next = node
 }
 
-func (dll DoublyLinkedList[K, V]) moveToFront(node *Node[K, V]) {
+func (dll *DoublyLinkedList[K, V]) moveToFront(node *Node[K, V]) {
 	dll.remove(node)
 	dll.addFirst(node)
 }
 
-func (dll DoublyLinkedList[K, V]) remove(node *Node[K, V]) {
+func (dll *DoublyLinkedList[K, V]) remove(node *Node[K, V]) {
 	node.prev.next = node.next
 	node.next.prev = node.prev
 }
 
-func (dll DoublyLinkedList[K, V]) removeLast() *Node[K, V] {
+func (dll *DoublyLinkedList[K, V]) removeLast() *Node[K, V] {
 	if dll.tail.prev == dll.head { 
 		return nil 
 	}
