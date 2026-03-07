@@ -31,7 +31,9 @@ func (cache *Cache[K, V]) Put(key K, value V) {
 	}
 	if(len(cache._map) == cache.capacity) {
 		removedNode := cache.policy.evict()
-		delete(cache._map, removedNode.key)
+		if removedNode != nil {
+			delete(cache._map, removedNode.key)
+		}
 	}
 	newNode := NewNode(key, value)
 	cache.policy.onInsert(newNode)
@@ -54,7 +56,7 @@ func (cache *Cache[K, V]) Get(key K) (V, bool){
 func (cache *Cache[K, V]) Remove(key K) {
 	cache.mu.Lock()
 	defer cache.mu.Unlock()
-	
+
 	if node, exists := cache._map[key]; exists {
 		cache.policy.onRemove(node)
 		delete(cache._map, key)
