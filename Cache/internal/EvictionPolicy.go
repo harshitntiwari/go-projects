@@ -11,6 +11,7 @@ type LRUEvictionPolicy[K comparable, V any] struct {
 	dll *DoublyLinkedList[K, V]
 }
 
+// NewLRUEvictionPolicy allocates and returns a new [NewLRUEvictionPolicy]
 func NewLRUEvictionPolicy[K comparable, V any]() *LRUEvictionPolicy[K, V] {
 	return &LRUEvictionPolicy[K, V]{
 		dll: NewList[K, V](),

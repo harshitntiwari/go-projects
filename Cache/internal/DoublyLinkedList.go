@@ -5,6 +5,7 @@ type DoublyLinkedList[K comparable, V any] struct {
 	tail *Node[K, V]
 }
 
+// NewList allocates and returns a new [DoublyLinkedList]
 func NewList[K comparable, V any]() *DoublyLinkedList[K, V]{
 	var zeroK K
 	var zeroV V

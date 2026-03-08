@@ -9,7 +9,7 @@ type Cache[K comparable, V any] struct {
 	mu sync.Mutex
 }
 
-// NewCache allocates and returns a new [Cache[K, V]]
+// NewCache allocates and returns a new [Cache]
 func NewCache[K comparable, V any](capacity int) *Cache[K, V] {
 	return &Cache[K, V]{
 		_map: map[K]*Node[K, V]{},
