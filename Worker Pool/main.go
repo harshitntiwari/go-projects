@@ -36,9 +36,9 @@ func main() {
 	for result := range wp.Result() {
 		if result.Err != nil {
 			fmt.Printf("ERROR job %d: %s\n", result.JobID, result.Err)
+			errCount++;
 		} else {
 			fmt.Printf("OK    job %d: %s\n", result.JobID, result.Output)
-			errCount++;
 		}
 	}
 
